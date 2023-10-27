@@ -1,0 +1,102 @@
+<html>
+
+<head>
+    <title>Agents</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <h1>Agents</h1>
+
+    [ <a href="home.html">Home Page</a> | <a href="agents.html">Agents</a> | <a href="Customers.html">Customers</a> |
+    <a href="Properties.html">Properties</a> | <a href="Listings.html">Listings</a> |
+    <a href="Transactions.html">Transactions</a> | <a href="intersection.html">Intersection/a>]
+
+        <div id="browse" style="display: block">
+            <p><strong>Browse Agents</strong></p>
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th><a href="#">New</a></th>
+                    <th></th>
+                    <th>ID</th>
+                    <th>first name</th>
+                    <th>last name</th>
+                    <th>phone number</th>
+                    <th>email</th>
+                </tr>
+                <tr>
+                    <td><a href="#">Edit</a></td>
+                    <td><a href="#">Delete</a></td>
+                    <td align="right">1</td>
+                    <td>Gemenon</td>
+                    <td align="right">2800000000</td>
+                    <td>Old Gemenese</td>
+                    <td>Oranu</td>
+                </tr>
+                <tr>
+                    <td><a href="#">Edit</a></td>
+                    <td><a href="#">Delete</a></td>
+                    <td align="right">2</td>
+                    <td>Leonis</td>
+                    <td align="right">2600000000</td>
+                    <td>Leonese</td>
+                    <td>Luminere</td>
+                </tr>
+                <tr>
+                    <td><a href="#">Edit</a></td>
+                    <td><a href="#">Delete</a></td>
+                    <td>3</td>
+                    <td>Caprica</td>
+                    <td align="right">4900000000</td>
+                    <td>Caprican</td>
+                    <td>Caprica City</td>
+                </tr>
+            </table>
+            <p>&nbsp;</p>
+        </div> <!-- browse -->
+        <div id="insert" style="display: block">
+            <form id="addPlanet">
+                <legend><strong>Add Agent</strong></legend>
+                <fieldset class="fields">
+                    <label> First Name </label> <input type="text" name="name">
+                    <label> Last Name </label> <input type="text" name="population">
+                    <label> Phone </label> <input type="text" name="language">
+                    <label> Email </label> <input type="text" name="language">
+                </fieldset>
+                <input class="btn" type="submit" id="addPlanet" value="Add a Agent">
+                <input class="btn" type="button" value="cancel">
+            </form> <!--add new agent-->
+        </div><!-- insert -->
+
+        <p>&nbsp;</p>
+        <div id="update" style="display: block">
+            <form id="updatePlanet">
+                <legend><strong>Update Agent</strong></legend>
+                <fieldset class="fields">
+                    <label>ID:</label> 1
+                    <label> Name </label> <input type="text" value="Gemenon" name="name">
+                    <label> Population </label> <input type="text" name="population" value="2800000000">
+                    <label> Language </label> <input type="text" name="language" value="Old Gemenese">
+                    <label> Capital </label> <input type="text" name="language" value="Oranu">
+                </fieldset>
+                <input class="btn" type="submit" id="UpdateSavePlanet" value="Save Update Agent">
+                <input class="btn" type="button" value="cancel">
+            </form>
+        </div><!-- update -->
+        <p>&nbsp;</p>
+        <div id="delete" style="display: block">
+            <form id="deletePlanet">
+                <legend><strong>Delete Agent</strong></legend>
+                <fieldset class="fields">
+                    <p>Are you sure you wish to delete the following agent?</p>
+                    <label>ID:</label> 1
+                    <label> Name </label> Gemenon
+
+                </fieldset>
+                <input class="btn" type="submit" id="DeletePlanet" value="Delete Agent">
+                <input class="btn" type="button" value="cancel">
+            </form>
+        </div><!-- delete -->
+</body>
+
+</html>
