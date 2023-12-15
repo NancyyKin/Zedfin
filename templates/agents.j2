@@ -1,0 +1,129 @@
+<html>
+
+<head>
+    <title>Agents</title>
+    <link href="../static/style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../static/favicon/site.webmanifest">
+
+    <script language="JavaScript">
+        function showform(dowhat) {
+            /*
+            * four DIVS: browse, insert, update, delete
+            * this function sets one visible the others not
+            */
+            if(dowhat == 'insert') {
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('browse').style.display = 'block';
+                document.getElementById('insert').style.display = 'block';     
+                document.getElementById('erroradd').style.display = 'none';
+            } else if(dowhat == 'error') {
+                document.getElementById('erroradd').style.display = 'block';
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('browse').style.display = 'none';
+                document.getElementById('insert').style.display = 'block';
+            } else { //by default display browse
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('browse').style.display = 'block';
+                document.getElementById('insert').style.display = 'block';
+                document.getElementById('erroradd').style.display = 'none';
+
+            }
+        }
+
+        function newPerson() {
+            showform('insert');
+        }
+        function browsePeople() {
+            showform('browse');
+        }
+        
+        function showError() {
+            showform('error');
+        }
+
+        </script>
+
+</head>
+
+<body onload="browsePeople()">
+
+    <div id="header">
+
+        <h1>Zedfin</h1>
+        <h2>Agents</h2>
+
+        <nav> 
+            [ <a href="/">Home Page</a> | <a href="/Agents">Agents</a> | <a href="/Customers">Customers</a> |
+            <a href="/Properties">Properties</a> | <a href="/Listings">Listings</a> |
+            <a href="/Transactions">Transactions</a> ]
+        </nav>
+    </div>
+
+
+    <!-- TABLE OF AGENTS TO BE DISPLAYED ON THE TOP -->
+    <div id="browse" >
+        <p><strong>Browse Agents</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th><a href="#Add_Agent" onClick="newPerson()" class="new_button">New</a></th>
+                <th></th>
+                {% for key in Agents[0].keys() %}
+                <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+            {% for person in Agents %}
+            <tr>
+                <td><a href="edit_agent/{{person['Agent ID']}}">Edit </a></td>
+                <td><a href="delete_agent/{{person['Agent ID']}}">Delete </a>
+                {% for key in person.keys() %}
+                <td>{{person[key]}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <p>&nbsp;</p>
+    </div> 
+
+    <!--ADD NEW AGENT FORM-->
+    <div id="insert" >
+        <form id="Add_Agent" action="/Agents" method="POST">
+            <legend><strong>Add Agent</strong></legend>
+            <fieldset class="fields">
+                
+                <label class="required"> First Name </label> <input type="text" name="agent_first_name" id="agent_first_name" required> 
+                <label class="required"> Last Name </label> <input type="text" name="agent_last_name" id="agent_last_name" required>
+                <label class="required"> Phone </label> <input type="text" name="agent_phone" id="agent_phone" required>
+                <label class="required"> Email </label> <input type="text" name="agent_email" id="agent_email" required>
+                
+                <p style="font-size: small; text-align:right; "><span style="color:red">*</span> signifies mandatory field</p> 
+            
+            </fieldset>
+            <input class="btn" type="submit" value="Add Agent" name="Add_Agent" href="#error" onClick="showError()">
+            
+        </form> <!--add new agent-->
+    </div><!-- insert -->
+
+    <!--ADD NEW AGENT FORM-->
+    <div id="erroradd" >
+        <form id="Add_Agent_error">
+            <legend><strong>Error on Adding Agent</strong></legend>
+            <fieldset class="fields">
+                <p>At least one mandatory field is empty. Please try again.</p> 
+            </fieldset>
+            
+        </form> <!--add new agent-->
+    </div><!-- insert -->
+
+
+    <p>&nbsp;</p>
+    <br><br>
+</body>
+<footer>
+    <p> &copy; 2023 Corie Gulik & Nancy Yang</p>
+</footer>
+
+</html>

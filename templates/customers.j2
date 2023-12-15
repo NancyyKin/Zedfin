@@ -1,0 +1,132 @@
+<html>
+
+<head>
+    <title>Customers</title>
+    <link href="../static/style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../static/favicon/site.webmanifest">
+    <script language="JavaScript">
+        function showform(dowhat) { 
+            /*
+            * two DIVS: error, browse
+            * this function sets one visible the others not
+            */
+    
+            if(dowhat == 'error') {
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('insert').style.display = 'block';
+                document.getElementById('erroradd').style.display = 'block';
+                document.getElementById('browse').style.display = 'none';
+            } else { //by default display browse
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('browse').style.display = 'block';
+                document.getElementById('insert').style.display = 'block';
+                document.getElementById('erroradd').style.display = 'none';
+            }
+        }
+
+
+        function browsePeople() {
+            showform('browse');
+        }
+        function showError() {
+            showform('error');
+        }
+
+        </script>
+
+</head>
+
+<body onload="browsePeople()">
+    <div id="header">
+        <h1>Zedfin</h1>
+        <h2>Customers</h2>
+
+        <nav>[ <a href="/">Home Page</a> | <a href="/Agents">Agents</a> | <a href="/Customers">Customers</a> |
+            <a href="/Properties">Properties</a> | <a href="/Listings">Listings</a> |
+            <a href="/Transactions">Transactions</a> ]
+        </nav>  
+    </div>
+    
+    <!-- TABLE OF CUSTOMERS TO BE DISPLAYED ON THE TOP -->
+    <div id="browse" >
+        <p><strong>Browse Customers</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                {% for key in Customers[0].keys() %}
+                <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+            {% for person in Customers %}
+            <tr>
+                {% for key in person.keys() %}
+                <td>{{person[key]}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <p>&nbsp;</p>
+    </div> <!-- browse -->
+
+
+    <!--ADD NEW CUSTOMER FORM-->
+    <div id="insert" >
+        <form id="Add_Customer" action="/Customers" method="POST">
+            <legend><strong>Add Customer</strong></legend>
+            <fieldset class="fields">
+                <label class="required"> First Name </label> <input type="text" name="customer_first_name" id="customer_first_name" required>
+
+                <label class="required"> Last Name </label> <input type="text" name="customer_last_name" id="customer_last_name" required>
+
+                <label> Phone </label> <input type="text" name="customer_phone" id="customer_phone">
+
+                <label class="required"> Email </label> <input type="text" name="customer_email" id="customer_email" required>
+
+                <label > Buying Property? </label> 
+                <select id="buying_property" name="buying_property">
+                    <option value="1">Yes </option>
+                    <option value="0">No </option>
+                </select>
+
+                <label> Buying Budget </label> <input type="text" name="buying_budget" id="buying_budget">
+
+                <label for="buying_agent">Buying Agent</label>
+                <select id="buying_agent" name="buying_agent">
+                    <option> </option>
+                    {% for item in Agents %}
+                    <option value="{{item['agent_id']}}">{{ item['Agent Name'] }}</option>
+                    {% endfor %}
+                </select>
+
+                <p style="font-size: small; text-align:right; "><span style="color:red">*</span> signifies mandatory field</p> 
+            
+            </fieldset>
+            <input class="btn" type="submit" value="Add Customer" name="Add_Customer" href="#error" onClick="showError()">
+
+
+        </form> <!--add new Customer-->
+    </div><!-- insert -->
+
+    <!--Error on Customer add-->
+    <div id="erroradd" >
+        <form id="Add_Customer_error">
+            <legend><strong>Error on Adding Customer</strong></legend>
+            <fieldset class="fields">
+                <p>At least one mandatory field is empty. Please try again.</p> 
+            </fieldset>
+            
+        </form> 
+    </div>
+    
+    <br><br>
+
+</body>
+
+<footer>
+    <p> &copy; 2023 Corie Gulik & Nancy Yang</p>
+</footer>
+
+</html>

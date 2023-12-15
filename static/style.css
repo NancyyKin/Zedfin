@@ -1,0 +1,142 @@
+/* CSS Document */
+
+h1 {
+    text-align: center;
+}
+
+nav {
+    text-align: center;
+}
+
+body {
+    padding: 0 5%;
+    padding-bottom: 8%;
+    background-color: hsla(75, 26%, 48%, 0.05);
+}
+
+table {
+    background-color: hsla(75, 26%, 48%, 0.1)
+}
+
+th {
+    background-color: hsla(108, 20%, 60%, 0.2)
+}
+
+form {
+    width: 230px;
+    align-content: flex-start;
+    margin-right: 15px;
+}
+
+fieldset {
+    padding-bottom: 4px;
+    margin-bottom: 5px;
+    width: 200px;
+    padding: 3px;
+    background-color: hsla(75, 26%, 48%, 0.1)
+}
+
+input,
+select {
+    margin: 4px 2px;
+    display: block;
+    padding: inherit;
+}
+
+/* #bottomforms {
+    display: flex;
+} */
+
+.btn {
+    display: inline;
+    float: inline-end;
+    padding: .3em;
+
+}
+
+#deleteitem {
+    float: inline-end;
+    color: brown;
+}
+
+a {
+    padding: 0 2%;
+}
+
+a:hover {
+    background-color: lavender;
+}
+
+a:visited {
+    color: blue;
+
+}
+
+footer {
+    display: block;
+    position: absolute;
+    justify-items: right;
+    text-align: end;
+    width: 83%;
+}
+
+
+label.required:after {
+    content: " *";
+    color: red;
+}
+
+.new_button {
+    font-size: large;
+    font-weight: bold;
+}
+
+#Reset {
+    width: 100%;
+
+
+}
+
+#reset_button {
+    background-color: brown;
+    color: white;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+
+}
+
+#reset_button:hover {
+    background-color: white;
+    color: brown;
+    cursor: pointer;
+}
+
+/* ** Citation for the following Tooltip, Date 11/29/2023,
+ Based on: https: https: //www.w3schools.com/css/css_tooltip.asp#:~:text=HTML ** */
+
+.tooltip {
+    position: relative;
+
+    width: 100%;
+    justify-content: end;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    top: 100%;
+    float: right;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    text-align: center;
+    background-color: hsla(75, 26%, 48%, 0.6);
+    color: white;
+    padding: .2em;
+
+}
+
+.delete {
+    font-size: .8em;
+}

@@ -1,0 +1,204 @@
+<html>
+
+<head>
+    <title>Transactions</title>
+    <link href="../static/style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../static/favicon/site.webmanifest">
+
+
+    <script language="JavaScript">
+        function showform(dowhat) {
+            /*
+            * three DIVS: error, error2, browse
+            * this function sets one visible the others not
+            */
+    
+            if(dowhat == 'error') {
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('insert').style.display = 'block';
+                document.getElementById('erroradd').style.display = 'block';
+                document.getElementById('browse').style.display = 'none';
+                document.getElementById('insert2').style.display = 'none';
+                document.getElementById('erroradd2').style.display = 'none';
+                document.getElementById('browse2').style.display = 'none';
+            }else if(dowhat == 'error2') {
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('insert2').style.display = 'block';
+                document.getElementById('erroradd2').style.display = 'block';
+                document.getElementById('insert').style.display = 'none';
+                document.getElementById('erroradd').style.display = 'none';
+                document.getElementById('browse').style.display = 'none';
+                document.getElementById('browse2').style.display = 'none';
+            } else { //by default display browse
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('browse').style.display = 'block';
+                document.getElementById('insert').style.display = 'block';
+                document.getElementById('browse2').style.display = 'block';
+                document.getElementById('insert2').style.display = 'block';
+                document.getElementById('erroradd').style.display = 'none';
+                document.getElementById('erroradd2').style.display = 'none';
+            }
+        }
+
+
+        function browsePeople() {
+            showform('browse');
+        }
+        function showError() {
+            showform('error');
+        }
+        function showError2() {
+            showform('error2');
+        }
+
+    </script>
+</head>
+
+<body onload="browsePeople()">
+    <div id="header">
+        <h1>Zedfin</h1>
+        <h2>Transactions</h2>
+
+        <nav>[ <a href="/">Home Page</a> | <a href="/Agents">Agents</a> | <a href="/Customers">Customers</a> |
+            <a href="/Properties">Properties</a> | <a href="/Listings">Listings</a> |
+            <a href="/Transactions">Transactions</a> ]
+        </nav>
+    </div>
+
+    <div id="browse" >
+        <p><strong>Browse Transactions</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                {% for key in Property_Transactions[0].keys() %}
+                <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+            {% for person in Property_Transactions %}
+            <tr>
+                {% for key in person.keys() %}
+                <td>{{person[key]}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <p>&nbsp;</p>
+    </div> <!-- browse -->
+
+
+
+    <div id="insert" >
+        <form id="Add_Transaction" action="/Transactions" method="POST">
+            <legend><strong>Add Transaction</strong></legend>
+            <fieldset class="fields">
+                <label class="required"> Transaction Date </label> <input type="date" name="transaction_date" id="transaction_date" required>
+
+                <label class="required"> Contract Price </label> <input type="text" name="contract_price" id="contract_price" required>
+
+                <label class="required"> Listing Name </label>
+                <select id="listing_id" name="listing_id">
+                    <option> </option>
+                    {% for item in Listing_Details %}
+                    <option value="{{item['listing_id']}}">  {{ item['Listing Name'] }}</option>
+                    {% endfor %}
+
+                </select>
+            </fieldset>
+
+            <input class="btn" type="submit" value="Add Transaction" name="Add_Transaction" href="#error" onClick="showError()">
+            
+        </form> <!--add new Transaction-->
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+    </div><!-- insert -->
+
+    <!--Error on transaction add-->
+    <div id="erroradd" >
+        <form id="Add_Transaction_error">
+            <legend><strong>Error on Adding Transaction</strong></legend>
+            <fieldset class="fields">
+                <p>At least one mandatory field is empty. Please try again.</p> 
+            </fieldset>
+            
+        </form> 
+    </div>
+
+<br>
+
+<!------------------------------------ Different parts ---------------------------------------------->
+
+
+    <div id="browse2" >
+        <p><strong>Browse Transaction-Agents</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th></th>
+                {% for key in Property_Transactions_has_Agents[0].keys() %}
+                <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+            {% for item in Property_Transactions_has_Agents %}
+            <tr>
+                <td><a href="delete_intersection/{{item['Intersection ID']}}" class="btn btn-default delete">Delete</a></td>
+                {% for key in item.keys() %}
+                <td>{{item[key]}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <p>&nbsp;</p>
+    </div> <!-- browse -->
+
+
+    <div id="insert2" >
+        <form id="Add_Intersection" action="/Transactions" method="POST">
+            <legend><strong>Add Transaction-Agent</strong></legend>
+            <fieldset class="fields">
+
+                <label class="required"> Listing Name </label>
+                <select id="listing_id" name="listing_id">
+                    <option> </option>
+                    {% for item in Intersections %}
+                    <option value="{{item['listing_id']}}"> {{ item['Listing Name'] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label class="required"> Agent</label>
+                <select id="agent_id" name="agent_id">
+                    <option> </option>
+                    {% for item in Agents %}
+                    <option value="{{item['agent_id']}}"> {{ item['Agent Name'] }}</option>
+                    {% endfor %} 
+
+                </select>
+
+            </fieldset>
+
+            <input class="btn" type="submit" value="Add Transaction Agent" name="Add_Intersection" href="#error2" onClick="showError2()">
+            
+        </form> <!--add new Transaction-->
+    </div><!-- insert -->
+
+    <!--Error on Transaction agent add-->
+    <div id="erroradd2" >
+        <form id="Add_Transaction_agent_error">
+            <legend><strong>Error on Adding Transaction Agent</strong></legend>
+            <fieldset class="fields">
+                <p>At least one mandatory field is empty. Please try again.</p> 
+            </fieldset>
+            
+        </form> 
+    </div>
+
+    <br><br>
+
+</body>
+<footer>
+    <p> &copy; 2023 Corie Gulik & Nancy Yang</p>
+</footer>
+
+
+</html>

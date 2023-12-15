@@ -1,0 +1,144 @@
+<html>
+
+<head>
+    <title>Listing Details</title>
+    <link href="../static/style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../static/favicon/site.webmanifest">
+    <script language="JavaScript">
+        function showform(dowhat) {
+            /*
+            * two DIVS: error, browse
+            * this function sets one visible the others not
+            */
+    
+            if(dowhat == 'error') {
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('insert').style.display = 'block';
+                document.getElementById('erroradd').style.display = 'block';
+                document.getElementById('browse').style.display = 'none';
+            } else { //by default display browse
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('browse').style.display = 'block';
+                document.getElementById('insert').style.display = 'block';
+                document.getElementById('erroradd').style.display = 'none';
+            }
+        }
+
+
+        function browsePeople() {
+            showform('browse');
+        }
+        function showError() {
+            showform('error');
+        }
+
+        </script>
+
+</head>
+
+<body onload="browsePeople()">
+    <div id="header">
+        <h1>Zedfin</h1>
+        <h2>Listing Details</h2>
+
+        <nav>[ <a href="/">Home Page</a> | <a href="/Agents">Agents</a> | <a href="/Customers">Customers</a> |
+            <a href="/Properties">Properties</a> | <a href="/Listings">Listings</a> |
+            <a href="/Transactions">Transactions</a> ]
+        </nav>
+    </div>
+
+    <div id="browse" style="display: block">
+        <p><strong>Browse Listing Details</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                {% for key in Listing_Details[0].keys() %}
+                <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+            {% for listing_detail in Listing_Details %}
+            <tr>
+                {% for key in listing_detail.keys() %}
+                <td>{{listing_detail[key]}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <p>&nbsp;</p>
+    </div>
+    <!-- browse -->
+
+
+
+    <div id="insert" style="display: block">
+        <form id="Add_Listing" action="/Listings" method="POST">
+            <legend><strong>Add Listings</strong></legend>
+            <fieldset class="fields">
+                <label class="required"> Listing Name </label> <input type="text" name="listing_name" id="listing_name" required>
+
+                <label class="required" for="property_name"> Property Name </label>
+                <select id="property_id" name="property_id" id="property_id" >
+                    <option> </option>
+                    {% for item in Properties %}
+                    <option value="{{item['property_id']}}"> {{ item['Property Name'] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label class="required"> Listing Date </label> <input type="date" name="listing_date" id="listing_date" required>
+
+                <label class="required"> Listing Price </label> <input type="text" name="listing_price" id="listing_price" required>
+
+                <label for="agent_name"> Agent Name </label>
+                <select id="selling_agent_id" name="selling_agent_id">
+                    <option> </option>
+                    {% for item in Agents %}
+                    <option value="{{item['agent_id']}}"> {{ item['Agent Name'] }}</option>
+                    {% endfor %} 
+                </select>
+
+                <label for="customer_name"> Customer Name </label>
+                <select id="selling_customer_id" name="selling_customer_id">
+                    <option> </option>
+                    {% for item in Customers %}
+                    <option value="{{ item['customer_id']  }}"> {{ item['Customer Name'] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label class="required"> Active Listing? </label> 
+                <select id="active_listing" name="active_listing">
+                    <option value="1">Yes </option>
+                    <option value="0">No </option>
+                </select>
+
+                <p style="font-size: small; text-align:right; "><span style="color:red">*</span> signifies mandatory field</p> 
+            
+            </fieldset>
+
+            <input class="btn" type="submit" value="Add Listing" name="Add_Listing" href="#error" onClick="showError()">
+            
+        </form> <!--add new Listings-->
+    </div><!-- insert -->
+
+    <!--Error on Listing Details add-->
+    <div id="erroradd" >
+        <form id="Add_Listing_Details_error">
+            <legend><strong>Error on Adding Listing Details</strong></legend>
+            <fieldset class="fields">
+                <p>At least one mandatory field is empty. Please try again.</p> 
+            </fieldset>
+            
+        </form> 
+    </div>
+
+    <br><br>
+
+</body>
+
+<footer>
+    <p> &copy; 2023 Corie Gulik & Nancy Yang</p>
+</footer>
+
+</html>

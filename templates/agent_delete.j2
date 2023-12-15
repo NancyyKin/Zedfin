@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <title>Agents</title>
+    <link href="../static/style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../static/favicon/site.webmanifest">
+
+</head>
+
+<body ">
+
+    <div id="header">
+
+        <h1>Zedfin</h1>
+        <h2>Agent</h2>
+
+        <nav> 
+            [ <a href="/">Home Page</a> | <a href="/Agents">Agents</a> | <a href="/Customers">Customers</a> |
+            <a href="/Properties">Properties</a> | <a href="/Listings">Listings</a> |
+            <a href="/Transactions">Transactions</a> ]
+        </nav>
+    <div id="header">
+
+
+    <div id="delete" >
+        <form id="deletePerson" action="/delete_agent/{{Agent[0].agent_id}} " method="POST">
+            <legend><strong>Delete Agent</strong></legend>
+            <fieldset class="fields">
+                <p>Are you sure you wish to delete the following agent?</p>
+                <span id="deleteitem"> <i> 
+
+                {{Agent[0].agent_first_name}} 
+                {{Agent[0].agent_last_name}} 
+                
+                </i> </span>
+            </fieldset>
+            <a href='/Agents'><input class="btn" type="button" value="cancel"></a>
+            <input class="btn" type="submit" name="delete_agent" value="Delete Agent" id="deletePerson">
+            
+        </form>
+    </div><!-- delete -->
+
+    <p>&nbsp;</p>
+</body>
+<footer>
+    <p> &copy; 2023 Corie Gulik & Nancy Yang</p>
+</footer>
+
+</html>

@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <title>Agents</title>
+    <link href="../static/style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../static/favicon/site.webmanifest">
+
+</head>
+
+<body ">
+
+    <div id="header">
+
+        <h1>Zedfin</h1>
+        <h2>Agent</h2>
+
+        <nav> 
+            [ <a href="/">Home Page</a> | <a href="/Agents">Agents</a> | <a href="/Customers">Customers</a> |
+            <a href="/Properties">Properties</a> | <a href="/Listings">Listings</a> |
+            <a href="/Transactions">Transactions</a> ]
+        </nav>
+    <div id="header">
+
+    <div id="edit">
+            <!-- form to edit data in Agents-->
+            <form id="Edit_Agent" action="/edit_agent/{{Agent[0].agent_id}}" method="post">
+                <legend><strong>Edit Agent</strong></legend>
+                <fieldset>
+                    <!-- We can preset form inputs to match attributes currently stored for 'id' of person to be updated via value= and accessing our passed data tuple -->
+                    <!-- Create hidden form input to store the passed 'id' of the person we are editing so we can access it easily in our 'POST' method in our app.py -->
+
+                    <!-- <label>agent id:</label> -->
+                    <input type="hidden" value="{{Agent[0].agent_id}}" class="form-control" id="agent_id" name="agent_id" required>
+
+                    <label>first name:</label>
+                    <input type="text" value="{{Agent[0].agent_first_name}}" class="form-control" id="agent_first_name" name="agent_first_name" pattern="[A-Za-z]{1,}" required>
+
+                    <label>last name:</label>
+                    <input type="text" value="{{Agent[0].agent_last_name}}" class="form-control" id="agent_last_name" name="agent_last_name" pattern="[A-Za-z0-9]{1,}" required>
+                    
+                    <label>phone:</label>
+                    <input type="text" value="{{Agent[0].agent_phone}}" class="form-control" id="agent_phone" name="agent_phone" pattern="[A-Za-z0-9]{1,}" required>
+                    
+                    <label>email:</label>
+                    <input type="text" value="{{Agent[0].agent_email}}" class="form-control" id="agent_email" name="agent_email" required>
+
+                </fieldset>
+                <a href='/Agents'><input class="btn" type="button" value="cancel"></a>
+                <input class="btn" type="submit" value="Update Agent" name="Edit_Agent" >
+            </form>
+
+
+    <p>&nbsp;</p>
+</body>
+<footer>
+    <p> &copy; 2023 Corie Gulik & Nancy Yang</p>
+</footer>
+
+</html>
+

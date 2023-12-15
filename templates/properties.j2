@@ -1,0 +1,120 @@
+<html>
+
+<head>
+    <title>Properties</title>
+    <link href="../static/style.css" rel="stylesheet" type="text/css" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="../static/favicon/site.webmanifest">
+     <script language="JavaScript">
+        function showform(dowhat) {
+            /*
+            * two DIVS: error, browse
+            * this function sets one visible the others not
+            */
+    
+            if(dowhat == 'error') {  
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('insert').style.display = 'block';
+                document.getElementById('erroradd').style.display = 'block';
+                document.getElementById('browse').style.display = 'none';
+            } else { //by default display browse
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('browse').style.display = 'block';
+                document.getElementById('insert').style.display = 'block';
+                document.getElementById('erroradd').style.display = 'none';
+            }
+        }
+
+
+        function browsePeople() {
+            showform('browse');
+        }
+        function showError() {
+            showform('error');
+        }
+
+        </script>
+
+</head>
+
+<body onload="browsePeople()">
+    <div id="header">
+        <h1>Zedfin</h1>
+        <h2>Properties</h2>
+
+        <nav>[ <a href="/">Home Page</a> | <a href="/Agents">Agents</a> | <a href="/Customers">Customers</a> |
+            <a href="/Properties">Properties</a> | <a href="/Listings">Listings</a> |
+            <a href="/Transactions">Transactions</a> ]
+        </nav>
+    </div>
+
+    <!-- TABLE OF PROPERTIES TO BE DISPLAYED ON THE TOP -->
+    <div id="browse" style="display: block">
+        <p><strong>Browse Properties</strong></p>
+        <table border="1" cellpadding="5">
+            <tr>
+                {% for key in Properties[0].keys() %}
+                <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+            {% for person in Properties %}
+            <tr>
+                {% for key in person.keys() %}
+                <td>{{person[key]}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <p>&nbsp;</p>
+    </div> <!-- browse -->
+
+
+    <!--ADD NEW PROPERTY FORM-->
+    <div id="insert" style="display: block">
+        <form id="Add_Property" action="/Properties" method="POST">
+            <legend><strong>Add Property</strong></legend>
+            <fieldset class="fields">
+                <label class="required"> Property Name </label> <input type="text" name="property_name" id="property_name">
+
+                <label class="required"> # Bedrooms </label> <input type="text" name="no_of_rooms" id="no_of_rooms">
+
+                <label class="required"> # Bathrooms </label> <input type="text" name="no_of_bathrooms" id="no_of_bathrooms">
+
+                <label class="required"> Sq Footage </label> <input type="text" name="sq_footage" id="sq_footage">
+
+                <label> Garage? </label> 
+                 <select id="garage" name="garage" id="garage">
+                    <option value="1">Yes </option>
+                    <option value="0">No </option>
+                </select>
+
+                <p style="font-size: small; text-align:right; "><span style="color:red">*</span> signifies mandatory field</p> 
+            
+            </fieldset>
+            <input class="btn" type="submit" value="Add Property" name="Add_Property" href="#error" onClick="showError()">
+            
+        </form> <!--add new Property-->
+    </div><!-- insert -->
+
+    <!--Error on Property add-->
+    <div id="erroradd" >
+        <form id="Add_Property_error">
+            <legend><strong>Error on Adding Property</strong></legend>
+            <fieldset class="fields">
+                <p>At least one mandatory field is empty. Please try again.</p> 
+            </fieldset>
+            
+        </form> 
+    </div>
+
+    <br><br>
+
+</body>
+<footer>
+    <p> &copy; 2023 Corie Gulik & Nancy Yang</p>
+</footer>
+
+</html>
