@@ -1,14 +1,9 @@
-# zedfin
+Background: 
+Zedfin is a database driven website to support a real estate company in organizing their Agents, Customers, Properties, and Transactions. All of the data are artificial. This project was done in collaboration with Corie Gulik as our Portfolio project for a Database class. 
 
-Website Link: 
-http://flip4.engr.oregonstate.edu:41102/
-
-Static Website:
-https://web.engr.oregonstate.edu/~yangnan/Zedfin/index.html
+Technologies used: 
+Python, Flask, HTML, Jinja, CSS, SQL
 
 
-Excel Link: 
-https://docs.google.com/spreadsheets/d/1uZTUpZbMHbEVn-9ZaBVpe2RjvHHSBSeEXtUzRRa8iII/edit#gid=1663268504
 
-doc -> PDF (Google Doc): 
-https://docs.google.com/document/d/1xBXmN4nc9pdNMAJXTOP3iwocOknXDGFaIoaaTlrk3Jo/edit
+**This project was hosted on the university's server during the quarter. It required univeristy creditials in order to access the website. **
