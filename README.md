@@ -1,8 +1,8 @@
 Website:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Z9NS7UnPeek?si=cLDlo1JegCHNMcxX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+https://youtu.be/Z9NS7UnPeek?feature=shared
 
 Database:
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Nh1Nd7Z3sgU?si=csxRti1l3HyeLTyZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+https://youtu.be/Nh1Nd7Z3sgU?feature=shared
 
 
 Background: 
